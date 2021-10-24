@@ -21,3 +21,6 @@ interface WallhavenApi {
     )
 }
 
+object ApiConstants {
+    const val BASE_URL = "https://wallhaven.cc/"
+}
