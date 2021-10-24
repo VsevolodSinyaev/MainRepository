@@ -1,9 +1,10 @@
 package com.vss3003.wallpapersearcher
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import retrofit2.http.GET
 import retrofit2.http.Query
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,15 +13,17 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-interface WallhavenApi {
-    @GET("https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=toplist&key=LAq8Y9XtyC3vD5HH7AVjzzQUi4TZE8pG")
-    fun getWallpapers(
+interface RecipesApi {
+    @GET("https://api.edamam.com/api/recipes/v2")
+    fun getRecipes(
         @Query("api_key") apiKey: String,
-        @Query("page") page: Int,
-        @Query("category") category: String,
+        @Query("weight") weight: Float,
+        @Query("foodCategory") foodCategory: String,
     )
 }
 
 object ApiConstants {
-    const val BASE_URL = "https://wallhaven.cc/"
+    const val BASE_URL = "https://api.edamam.com/api/recipes/v2"
+    const val IMAGE_URL = "https://www.edamam.com/web-img/"
 }
+
