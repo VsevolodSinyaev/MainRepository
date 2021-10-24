@@ -18,7 +18,7 @@
         android:title="@string/favorite" />
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/ic_round_favorite"
+        android:icon="@drawable/ic_round_settings"
         app:showAsAction="withText"
         android:title="@string/settings" />
 </menu>
