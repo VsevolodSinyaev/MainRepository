@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WallpaperSearcher</string>
+    <string name="favorite">Favorite</string>
+    <string name="categories">Categories</string>
+    <string name="all_characters">All characters</string>
+    <string name="settings">Settings</string>
 </resources>
