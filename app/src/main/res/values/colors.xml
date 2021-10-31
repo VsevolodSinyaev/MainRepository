@@ -14,4 +14,7 @@
     <color name="dark_orange">#d45b0b</color>
     <color name="dark_blue">#096fab</color>
     <color name="purple">#8745c4</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
 </resources>
