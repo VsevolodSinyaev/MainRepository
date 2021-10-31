@@ -2,23 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/categories"
-        android:icon="@drawable/ic_round_photo_library"
-        app:showAsAction="withText"
-        android:title="@string/categories"/>
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home"
+        android:title="@string/menu_home_title_text" />
     <item
-        android:id="@+id/all_characters"
-        android:icon="@drawable/ic_round_person"
-        app:showAsAction="withText"
-        android:title="@string/all_characters"/>
-    <item
-        android:id="@+id/favorites"
+        android:id="@+id/favorite"
         android:icon="@drawable/ic_round_favorite"
-        app:showAsAction="withText"
         android:title="@string/favorite" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_round_settings"
-        app:showAsAction="withText"
         android:title="@string/settings" />
 </menu>
