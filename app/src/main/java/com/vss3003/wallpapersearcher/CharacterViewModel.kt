@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CharacterViewModel : ViewModel() {
-    val filmsListLiveData:  MutableLiveData<List<Character>> = MutableLiveData()
+    val charactersListLiveData:  MutableLiveData<List<Character>> = MutableLiveData()
     private var interactor: Interactor = App.instance.interactor
 
     init {
-        interactor.getFilmsFromApi(1, object : ApiCallback {
+        App.instance.dagger.inject(this)
+        interactor.getCharactersFromApi(1, object : ApiCallback {
             override fun onSuccess(characters: List<Character>) {
-                filmsListLiveData.postValue(characters)
+                charactersListLiveData.postValue(characters)
             }
 
             override fun onFailure() {

@@ -1,18 +1,14 @@
 package com.vss3003.wallpapersearcher
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-
 object Converter {
-    @RequiresApi(Build.VERSION_CODES.N)
-    fun convertApiListToDTOList(mutableList: MutableList<MarvelCharacter>?): MutableList<Character> {
-        val result: MutableList<Character> = mutableListOf()
-        result.forEach {
+    fun convertApiListToDTOList(list: List<MarvelCharacter>?): List<Character> {
+        val result = mutableListOf<Character>()
+        list?.forEach {
             result.add(Character(
-                id = it.id,
                 name = it.name,
-                poster = it.poster,
+                poster = it.posterPath,
                 description = it.description,
+                id = it.id,
                 isInFavorites = false
             ))
         }
