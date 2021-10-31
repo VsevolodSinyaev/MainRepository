@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.character_item.view.*
 
 class CharacterListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val items: MutableList<Character> = mutableListOf()
+    private val items = mutableListOf<Character>()
 
     override fun getItemCount() = items.size
 
@@ -30,9 +30,9 @@ class CharacterListRecyclerAdapter(private val clickListener: OnItemClickListene
 
     }
 
-    fun addItems(list: List<Character>) {
+    fun addItems(mutableList: MutableList<Character>) {
         items.clear()
-        items.addAll(list)
+        items.addAll(mutableList)
         notifyDataSetChanged()
 
     }
