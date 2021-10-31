@@ -30,7 +30,7 @@ class CharacterListRecyclerAdapter(private val clickListener: OnItemClickListene
 
     }
 
-    fun addItems(mutableList: MutableList<Character>) {
+    fun addItems(mutableList: List<Character>) {
         items.clear()
         items.addAll(mutableList)
         notifyDataSetChanged()
