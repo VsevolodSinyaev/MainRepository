@@ -21,23 +21,7 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
 
-        fun launchDetailsFragment(character: Character) {
-            //Создаем "посылку"
-            val bundle = Bundle()
-            //Кладем наш фильм в "посылку"
-            bundle.putParcelable("character", character)
-            //Кладем фрагмент с деталями в перменную
-            val fragment = DetailsFragment()
-            //Прикрепляем нашу "посылку" к фрагменту
-            fragment.arguments = bundle
 
-            //Запускаем фрагмент
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_placeholder, fragment)
-                .addToBackStack(null)
-                .commit()
-        }
     }
 
     private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
@@ -82,4 +66,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun launchDetailsFragment(character: Character) {
+        //Создаем "посылку"
+        val bundle = Bundle()
+        //Кладем наш фильм в "посылку"
+        bundle.putParcelable("character", character)
+        //Кладем фрагмент с деталями в перменную
+        val fragment = DetailsFragment()
+        //Прикрепляем нашу "посылку" к фрагменту
+        fragment.arguments = bundle
+
+        //Запускаем фрагмент
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_placeholder, fragment)
+                .addToBackStack(null)
+                .commit()
+    }
 }
