@@ -1,7 +1,10 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.vss3003.wallpapersearcher.App
+import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.domain.Interactor
 import javax.inject.Inject
 
 class HeroViewModel : ViewModel() {
@@ -11,7 +14,7 @@ class HeroViewModel : ViewModel() {
 
     init {
         App.instance.dagger.inject(this)
-        interactor.getHeroesFromApi(1, object : ApiCallback {
+        interactor.getHeroesFromApi(object : ApiCallback {
             override fun onSuccess(heroes: List<Hero>) {
                 heroesListLiveData.postValue(heroes)
             }

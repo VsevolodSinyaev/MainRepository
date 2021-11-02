@@ -1,4 +1,4 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.vss3003.wallpapersearcher.R
+import com.vss3003.wallpapersearcher.data.ApiConstants
 import com.vss3003.wallpapersearcher.databinding.FragmentDetailsBinding
+import com.vss3003.wallpapersearcher.domain.Hero
 
 class DetailsFragment : Fragment() {
     private lateinit var hero: Hero
@@ -41,7 +44,7 @@ class DetailsFragment : Fragment() {
             intent.action = Intent.ACTION_SEND
             intent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Check out this film: ${hero.name} \n\n ${hero.description}"
+                "Check out this film: ${hero.id} \n\n ${hero.name}"
             )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
@@ -53,10 +56,9 @@ class DetailsFragment : Fragment() {
 
         binding.detailsToolbar.title = hero.name
         Glide.with(this)
-            .load(ApiConstants.IMAGE_URL + hero.id + "standard_medium")
+            .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.image)
             .centerCrop()
             .into(binding.detailsPoster)
-        binding.detailsDescription.text = hero.description
 
         binding.detailsFabFavorites.setImageResource(
             if (hero.isInFavorites) R.drawable.ic_round_favorite

@@ -1,4 +1,4 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view.rv_adapter
 
 import android.content.res.Resources
 import android.graphics.Rect

@@ -1,6 +1,8 @@
 package com.vss3003.wallpapersearcher
 
 import android.app.Application
+import com.vss3003.wallpapersearcher.di.AppComponent
+import com.vss3003.wallpapersearcher.di.DaggerAppComponent
 
 class App : Application() {
     lateinit var dagger: AppComponent

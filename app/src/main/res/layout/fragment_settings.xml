@@ -7,6 +7,6 @@
     android:id="@+id/settings_fragment_root"
     android:visibility="invisible"
     tools:visibility="visible"
-    tools:context=".SettingsFragment">
+    tools:context=".view.fragments.SettingsFragment">
 
 </FrameLayout>

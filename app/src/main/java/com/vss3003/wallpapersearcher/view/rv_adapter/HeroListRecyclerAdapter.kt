@@ -1,9 +1,12 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view.rv_adapter
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.vss3003.wallpapersearcher.R
+import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.view.rv_viewholders.HeroViewHolder
 import kotlinx.android.synthetic.main.character_item.view.*
 
 class HeroListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

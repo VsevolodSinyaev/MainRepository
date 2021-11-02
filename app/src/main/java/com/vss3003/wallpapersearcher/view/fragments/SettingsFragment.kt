@@ -1,10 +1,11 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.vss3003.wallpapersearcher.R
 
 class SettingsFragment : Fragment() {
 

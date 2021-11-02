@@ -1,10 +1,15 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.vss3003.wallpapersearcher.R
 import com.vss3003.wallpapersearcher.databinding.ActivityMainBinding
+import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.view.fragments.DetailsFragment
+import com.vss3003.wallpapersearcher.view.fragments.FavoriteFragment
+import com.vss3003.wallpapersearcher.view.fragments.HomeFragment
+import com.vss3003.wallpapersearcher.view.fragments.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +44,6 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId) {
                 R.id.home -> {
-                    Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
                     val tag = "home"
                     val fragment = checkFragmentExistence(tag)
                     //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
@@ -48,14 +52,12 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.favorite -> {
-                    Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
                     val tag = "favorite"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: FavoriteFragment(), tag)
                     true
                 }
                 R.id.settings -> {
-                    Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: SettingsFragment(), tag)

@@ -1,4 +1,4 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vss3003.wallpapersearcher.databinding.FragmentFavoriteBinding
+import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.utils.AnimationHelper
+import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
+import com.vss3003.wallpapersearcher.view.MainActivity
+import com.vss3003.wallpapersearcher.view.rv_adapter.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {

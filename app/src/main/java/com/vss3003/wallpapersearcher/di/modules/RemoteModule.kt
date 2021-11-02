@@ -1,5 +1,8 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.di.modules
 
+import com.vss3003.wallpapersearcher.BuildConfig
+import com.vss3003.wallpapersearcher.data.ApiConstants
+import com.vss3003.wallpapersearcher.data.HApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

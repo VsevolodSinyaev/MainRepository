@@ -1,4 +1,4 @@
-package com.vss3003.wallpapersearcher
+package com.vss3003.wallpapersearcher.utils
 
 import android.app.Activity
 import android.view.View
