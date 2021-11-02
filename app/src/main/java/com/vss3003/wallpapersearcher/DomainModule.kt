@@ -1,6 +1,5 @@
 package com.vss3003.wallpapersearcher
 
-import Interactor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -9,5 +8,5 @@ import javax.inject.Singleton
 class DomainModule {
     @Singleton
     @Provides
-    fun provideInteractor(repository: MainRepository, cApi: CApi) = Interactor(repo = repository, retrofitService = cApi)
+    fun provideInteractor(hApi: HApi) = Interactor(retrofitService = hApi)
 }

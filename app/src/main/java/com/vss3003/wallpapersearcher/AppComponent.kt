@@ -5,12 +5,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        RemoteModule::class,
-        DatabaseModule::class,
-        DomainModule::class
-    ]
+        modules = [
+            RemoteModule::class,
+            DomainModule::class
+        ]
 )
 interface AppComponent {
-    fun inject(characterViewModel: CharacterViewModel)
+    fun inject(heroViewModel: HeroViewModel)
 }

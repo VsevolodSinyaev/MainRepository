@@ -1,8 +1,6 @@
 package com.vss3003.wallpapersearcher
 
-import Interactor
 import android.app.Application
-import javax.inject.Inject
 
 class App : Application() {
     lateinit var dagger: AppComponent
@@ -18,6 +16,4 @@ class App : Application() {
             private set
     }
 
-    @Inject
-    lateinit var interactor: Interactor
 }

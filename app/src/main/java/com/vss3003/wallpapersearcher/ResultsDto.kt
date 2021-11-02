@@ -12,5 +12,5 @@ data class ResultsDto(
     @SerializedName("count")
     val count: Int,
     @SerializedName("results")
-    val results: List<MarvelCharacter>
+    val results: List<MarvelHero>
 )

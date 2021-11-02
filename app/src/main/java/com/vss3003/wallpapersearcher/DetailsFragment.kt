@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.vss3003.wallpapersearcher.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
-    private lateinit var character: Character
+    private lateinit var hero: Hero
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -26,12 +27,12 @@ class DetailsFragment : Fragment() {
         setFilmsDetails()
 
         binding.detailsFabFavorites.setOnClickListener {
-            if (!character.isInFavorites) {
+            if (!hero.isInFavorites) {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite)
-                character.isInFavorites = true
+                hero.isInFavorites = true
             } else {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite_border)
-                character.isInFavorites = false
+                hero.isInFavorites = false
             }
         }
 
@@ -40,7 +41,7 @@ class DetailsFragment : Fragment() {
             intent.action = Intent.ACTION_SEND
             intent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Check out this film: ${character.name} \n\n ${character.description}"
+                "Check out this film: ${hero.name} \n\n ${hero.description}"
             )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
@@ -48,17 +49,17 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setFilmsDetails() {
-        character = arguments?.get("film") as Character
+        hero = arguments?.get("film") as Hero
 
-        binding.detailsToolbar.title = character.name
+        binding.detailsToolbar.title = hero.name
         Glide.with(this)
-            .load(ApiConstants.IMAGE_URL + character.id + "standard_medium")
+            .load(ApiConstants.IMAGE_URL + hero.id + "standard_medium")
             .centerCrop()
             .into(binding.detailsPoster)
-        binding.detailsDescription.text = character.description
+        binding.detailsDescription.text = hero.description
 
         binding.detailsFabFavorites.setImageResource(
-            if (character.isInFavorites) R.drawable.ic_round_favorite
+            if (hero.isInFavorites) R.drawable.ic_round_favorite
             else R.drawable.ic_round_favorite_border
         )
     }

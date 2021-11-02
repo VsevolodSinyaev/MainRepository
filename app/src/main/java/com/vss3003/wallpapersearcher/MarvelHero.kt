@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.sql.Array
 import java.util.*
 
-data class MarvelCharacter(
+data class MarvelHero(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")

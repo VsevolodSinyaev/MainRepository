@@ -10,14 +10,14 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
-        val character = intent.extras?.get("character") as Character
+        val hero = intent.extras?.get("hero") as Hero
 
-        details_toolbar.title = character.name
+        details_toolbar.title = hero.name
         Glide.with(this)
-                .load(ApiConstants.IMAGE_URL + character.id + "standard_medium")
+                .load(ApiConstants.IMAGE_URL + "scale_small/" + hero.image)
                 .centerCrop()
                 .into(detailsPoster)
-        details_description.text = character.description
+        details_description.text = hero.description
 
     }
 }

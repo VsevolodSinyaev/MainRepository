@@ -10,7 +10,7 @@ import com.vss3003.wallpapersearcher.databinding.FragmentFavoriteBinding
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {
-    private lateinit var charactersAdapter: CharacterListRecyclerAdapter
+    private lateinit var charactersAdapter: HeroListRecyclerAdapter
     private lateinit var binding: FragmentFavoriteBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,14 +23,14 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Получаем список при транзакции фрагмента
-        val favoriteList: List<Character> = emptyList()
+        val favoriteList: List<Hero> = emptyList()
 
         AnimationHelper.performFragmentCircularRevealAnimation(favorite_fragment_root, requireActivity(),2)
 
         binding.favoriteRecycler.apply {
-            charactersAdapter = CharacterListRecyclerAdapter(object : CharacterListRecyclerAdapter.OnItemClickListener {
-                override fun click(character: Character) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(character)
+            charactersAdapter = HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
+                override fun click(hero: Hero) {
+                    (requireActivity() as MainActivity).launchDetailsFragment(hero)
                 }
             })
             //Присваиваем адаптер

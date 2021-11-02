@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vss3003.wallpapersearcher.databinding.FragmentHomeBinding
@@ -13,15 +12,15 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
     private val viewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(CharacterViewModel::class.java)
+        ViewModelProvider.NewInstanceFactory().create(HeroViewModel::class.java)
     }
-    private lateinit var charactersAdapter: CharacterListRecyclerAdapter
+    private lateinit var heroesAdapter: HeroListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
-    private var charactersDataBase = listOf<Character>()
+    private var heroesDataBase = listOf<Hero>()
         set(value) {
             if (field == value) return
             field = value
-            charactersAdapter.addItems(field)
+            heroesAdapter.addItems(field)
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +42,8 @@ class HomeFragment : Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
 
         initRecyckler()
-        viewModel.charactersListLiveData.observe(viewLifecycleOwner, {
-            charactersDataBase = it
+        viewModel.heroesListLiveData.observe(viewLifecycleOwner, {
+            heroesDataBase = it
         })
 
     }
@@ -52,13 +51,13 @@ class HomeFragment : Fragment() {
 
     private fun initRecyckler() {
         main_recycler.apply {
-            charactersAdapter =
-                CharacterListRecyclerAdapter(object : CharacterListRecyclerAdapter.OnItemClickListener {
-                    override fun click(character: Character) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(character)
+            heroesAdapter =
+                HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
+                    override fun click(hero: Hero) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(hero)
                     }
                 })
-            adapter = charactersAdapter
+            adapter = heroesAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
