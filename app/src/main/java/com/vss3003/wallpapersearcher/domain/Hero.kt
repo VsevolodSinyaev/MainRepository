@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Hero(
     val name: String,
     val id: Int,
-    val image: String,
+    val posterPath: String,
     var isInFavorites: Boolean = false
 ) : Parcelable

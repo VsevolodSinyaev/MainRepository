@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vss3003.wallpapersearcher.databinding.FragmentHomeBinding
 import com.vss3003.wallpapersearcher.domain.Hero
 import com.vss3003.wallpapersearcher.utils.AnimationHelper
-import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.MainActivity
+import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.rv_adapter.TopSpacingItemDecoration
 import com.vss3003.wallpapersearcher.viewmodel.HeroViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 
         AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
 
-        initRecyckler()
+        initRecycler()
         viewModel.heroesListLiveData.observe(viewLifecycleOwner, {
             heroesDataBase = it
         })
@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun initRecyckler() {
+    private fun initRecycler() {
         main_recycler.apply {
             heroesAdapter =
                 HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {

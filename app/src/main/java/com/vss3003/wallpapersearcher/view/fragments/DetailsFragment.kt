@@ -56,7 +56,7 @@ class DetailsFragment : Fragment() {
 
         binding.detailsToolbar.title = hero.name
         Glide.with(this)
-            .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.image)
+            .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.posterPath)
             .centerCrop()
             .into(binding.detailsPoster)
 

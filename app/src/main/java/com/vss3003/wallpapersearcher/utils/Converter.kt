@@ -9,7 +9,7 @@ object Converter {
         list?.forEach {
             result.add(Hero(
                 name = it.name,
-                image = it.image,
+                posterPath = it.posterPath,
                 id = it.id,
                 isInFavorites = false
             ))

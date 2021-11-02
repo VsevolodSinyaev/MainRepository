@@ -10,12 +10,11 @@ import kotlinx.android.synthetic.main.character_item.view.*
 class HeroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val name = itemView.name
     private val poster = itemView.poster
-    private val description = itemView.description
 
     fun bind(hero: Hero) {
         name.text = hero.name
         Glide.with(poster.context)
-                .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.image)
+                .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.posterPath)
                 .centerCrop().into(poster)
     }
 }
