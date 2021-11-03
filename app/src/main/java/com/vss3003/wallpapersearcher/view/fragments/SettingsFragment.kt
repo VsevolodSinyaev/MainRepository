@@ -10,10 +10,12 @@ import com.vss3003.wallpapersearcher.R
 class SettingsFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_settings, container, false)
+        //AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
     }
 
 }

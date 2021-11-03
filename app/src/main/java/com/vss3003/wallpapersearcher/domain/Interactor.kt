@@ -1,10 +1,12 @@
 package com.vss3003.wallpapersearcher.domain
 
+import android.util.Log
 import com.vss3003.wallpapersearcher.data.ApiConstants
-import com.vss3003.wallpapersearcher.data.Entity.ResultsDto
-import com.vss3003.wallpapersearcher.data.HApi
+import com.vss3003.wallpapersearcher.data.ApiConstants.API_KEY_PUBLIC
+import com.vss3003.wallpapersearcher.data.CApi
+import com.vss3003.wallpapersearcher.dto.Marvel
 import com.vss3003.wallpapersearcher.utils.Converter
-import com.vss3003.wallpapersearcher.viewmodel.HeroViewModel
+import com.vss3003.wallpapersearcher.viewmodel.CharacterViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,40 +15,48 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
-class Interactor(private val retrofitService: HApi) {
 
-    fun getHeroesFromApi(callback: HeroViewModel.ApiCallback) {
-        retrofitService.getHeroes(1, ApiConstants.PUBLIC_API_KEY, ApiConstants.PRIVATE_API_KEY)
-                .enqueue(object : Callback<ResultsDto> {
-                    override fun onResponse(call: Call<ResultsDto>, response: Response<ResultsDto>) {
-                        callback.onSuccess(
-                                Converter.convertApiListToDTOList(
-                                        response.body()?.results
-                                )
+class Interactor(private val retrofitService: CApi) {
+
+    fun getCharactersFromApi(page: Int, callback: CharacterViewModel.ApiCallback) {
+        retrofitService.getCharacters(
+                API_KEY_PUBLIC,
+                getTimeStump(),
+                getHashMd5(API_KEY_PUBLIC, ApiConstants.API_KEY_PRIVATE)
+        ).enqueue(object : Callback<Marvel> {
+            override fun onResponse(call: Call<Marvel>, response: Response<Marvel>) {
+                callback.onSuccess(
+                        Converter.convertApiListToDTOList(
+                                response.body()?.data?.results
                         )
-                    }
-
-                    override fun onFailure(call: Call<ResultsDto>, t: Throwable) {
-                        callback.onFailure()
-                    }
-                })
-    }
-}
-
-fun getHashMd5(publicKey: String, privateKey: String): String? {
-    val dataStamp = Date().time.toString()
-    val hash = "$dataStamp$privateKey$publicKey"
-    var digest: ByteArray = byteArrayOf()
-    try {
-        val messageDigest = MessageDigest.getInstance("MD5")
-        digest = messageDigest.digest(hash.toByteArray())
-    } catch (e: NoSuchAlgorithmException) {
-        e.printStackTrace()
-    }
-    val md5Hex = BigInteger(1, digest)
-            .toString(16)
-            .let {
-                if (it.length < 32) "0$it" else it
+                )
+                Log.d("TAG", "response: ${response.body()?.data?.results}")
             }
-    return md5Hex
+
+            override fun onFailure(call: Call<Marvel>, t: Throwable) {
+                callback.onFailure()
+            }
+        })
+    }
+
+    private fun getTimeStump(): String {
+        return Date().time.toString()
+    }
+
+    private fun getHashMd5(publicKey: String, privateKey: String): String {
+        val dataStamp = Date().time.toString()
+        val hash = "$dataStamp$privateKey$publicKey"
+        var digest: ByteArray = byteArrayOf()
+        try {
+            val messageDigest = MessageDigest.getInstance("MD5")
+            digest = messageDigest.digest(hash.toByteArray())
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
+        return BigInteger(1, digest)
+                .toString(16)
+                .let {
+                    if (it.length < 32) "0$it" else it
+                }
+    }
 }

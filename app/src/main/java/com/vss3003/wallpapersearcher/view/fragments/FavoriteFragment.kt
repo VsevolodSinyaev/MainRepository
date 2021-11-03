@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vss3003.wallpapersearcher.databinding.FragmentFavoriteBinding
-import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.utils.AnimationHelper
-import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.MainActivity
+import com.vss3003.wallpapersearcher.view.rv_adapter.CharacterListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.rv_adapter.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {
-    private lateinit var charactersAdapter: HeroListRecyclerAdapter
+    private lateinit var charactersAdapter: CharacterListRecyclerAdapter
     private lateinit var binding: FragmentFavoriteBinding
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,14 +28,14 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Получаем список при транзакции фрагмента
-        val favoriteList: List<Hero> = emptyList()
+        val favoriteList: List<Heroes> = emptyList()
 
         AnimationHelper.performFragmentCircularRevealAnimation(favorite_fragment_root, requireActivity(),2)
 
         binding.favoriteRecycler.apply {
-            charactersAdapter = HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
-                override fun click(hero: Hero) {
-                    (requireActivity() as MainActivity).launchDetailsFragment(hero)
+            charactersAdapter = CharacterListRecyclerAdapter(object : CharacterListRecyclerAdapter.OnItemClickListener {
+                override fun click(heroes: Heroes) {
+                    (requireActivity() as MainActivity).launchDetailsFragment(heroes)
                 }
             })
             //Присваиваем адаптер

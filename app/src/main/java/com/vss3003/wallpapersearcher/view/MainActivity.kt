@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.vss3003.wallpapersearcher.R
 import com.vss3003.wallpapersearcher.databinding.ActivityMainBinding
-import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.view.fragments.DetailsFragment
 import com.vss3003.wallpapersearcher.view.fragments.FavoriteFragment
 import com.vss3003.wallpapersearcher.view.fragments.HomeFragment
@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         initNavigation()
 
         supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragment_placeholder, HomeFragment())
-            .addToBackStack(null)
-            .commit()
+                .beginTransaction()
+                .add(R.id.fragment_placeholder, HomeFragment())
+                .addToBackStack(null)
+                .commit()
 
 
     }
@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeFragment(fragment: Fragment, tag: String) {
         supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_placeholder, fragment, tag)
-            .addToBackStack(null)
-            .commit()
+                .beginTransaction()
+                .replace(R.id.fragment_placeholder, fragment, tag)
+                .addToBackStack(null)
+                .commit()
     }
 
     private fun initNavigation() {
@@ -68,11 +68,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun launchDetailsFragment(hero: Hero) {
+    fun launchDetailsFragment(heroes: Heroes) {
         //Создаем "посылку"
         val bundle = Bundle()
         //Кладем наш фильм в "посылку"
-        bundle.putParcelable("character", hero)
+        bundle.putParcelable("character", heroes)
         //Кладем фрагмент с деталями в перменную
         val fragment = DetailsFragment()
         //Прикрепляем нашу "посылку" к фрагменту

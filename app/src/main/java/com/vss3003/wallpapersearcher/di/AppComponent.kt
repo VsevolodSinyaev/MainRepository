@@ -1,8 +1,8 @@
 package com.vss3003.wallpapersearcher.di
 
-import com.vss3003.wallpapersearcher.viewmodel.HeroViewModel
 import com.vss3003.wallpapersearcher.di.modules.DomainModule
 import com.vss3003.wallpapersearcher.di.modules.RemoteModule
+import com.vss3003.wallpapersearcher.viewmodel.CharacterViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,5 +14,5 @@ import javax.inject.Singleton
         ]
 )
 interface AppComponent {
-    fun inject(heroViewModel: HeroViewModel)
+    fun inject(characterViewModel: CharacterViewModel)
 }

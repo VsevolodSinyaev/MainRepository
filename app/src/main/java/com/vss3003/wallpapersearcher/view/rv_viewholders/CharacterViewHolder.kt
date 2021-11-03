@@ -4,17 +4,19 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vss3003.wallpapersearcher.data.ApiConstants
-import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.domain.Heroes
 import kotlinx.android.synthetic.main.character_item.view.*
 
-class HeroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CharacterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val name = itemView.name
     private val poster = itemView.poster
+    private val description = itemView.description
 
-    fun bind(hero: Hero) {
-        name.text = hero.name
+    fun bind(heroes: Heroes) {
+        name.text = heroes.name
         Glide.with(poster.context)
-                .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.posterPath)
+                .load(ApiConstants.IMAGE_URL + heroes.id + "standard_medium")
                 .centerCrop().into(poster)
+        description.text = heroes.description
     }
 }

@@ -10,15 +10,15 @@ import com.bumptech.glide.Glide
 import com.vss3003.wallpapersearcher.R
 import com.vss3003.wallpapersearcher.data.ApiConstants
 import com.vss3003.wallpapersearcher.databinding.FragmentDetailsBinding
-import com.vss3003.wallpapersearcher.domain.Hero
+import com.vss3003.wallpapersearcher.domain.Heroes
 
 class DetailsFragment : Fragment() {
-    private lateinit var hero: Hero
+    private lateinit var heroes: Heroes
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
@@ -30,12 +30,12 @@ class DetailsFragment : Fragment() {
         setFilmsDetails()
 
         binding.detailsFabFavorites.setOnClickListener {
-            if (!hero.isInFavorites) {
+            if (!heroes.isInFavorites) {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite)
-                hero.isInFavorites = true
+                heroes.isInFavorites = true
             } else {
                 binding.detailsFabFavorites.setImageResource(R.drawable.ic_round_favorite_border)
-                hero.isInFavorites = false
+                heroes.isInFavorites = false
             }
         }
 
@@ -43,8 +43,8 @@ class DetailsFragment : Fragment() {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Check out this film: ${hero.id} \n\n ${hero.name}"
+                    Intent.EXTRA_TEXT,
+                    "Check out this film: ${heroes.name} \n\n ${heroes.description}"
             )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
@@ -52,17 +52,18 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setFilmsDetails() {
-        hero = arguments?.get("film") as Hero
+        heroes = arguments?.get("film") as Heroes
 
-        binding.detailsToolbar.title = hero.name
+        binding.detailsToolbar.title = heroes.name
         Glide.with(this)
-            .load(ApiConstants.IMAGE_URL + hero.id + "/" + hero.posterPath)
-            .centerCrop()
-            .into(binding.detailsPoster)
+                .load(ApiConstants.IMAGE_URL + heroes.id + "standard_medium")
+                .centerCrop()
+                .into(binding.detailsPoster)
+        binding.detailsDescription.text = heroes.description
 
         binding.detailsFabFavorites.setImageResource(
-            if (hero.isInFavorites) R.drawable.ic_round_favorite
-            else R.drawable.ic_round_favorite_border
+                if (heroes.isInFavorites) R.drawable.ic_round_favorite
+                else R.drawable.ic_round_favorite_border
         )
     }
 }

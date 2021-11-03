@@ -2,7 +2,7 @@ package com.vss3003.wallpapersearcher.di.modules
 
 import com.vss3003.wallpapersearcher.BuildConfig
 import com.vss3003.wallpapersearcher.data.ApiConstants
-import com.vss3003.wallpapersearcher.data.HApi
+import com.vss3003.wallpapersearcher.data.CApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,29 +17,29 @@ class RemoteModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
-        //Настраиваем таймауты для медленного интернета
-        .callTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
-        //Добавляем логгер
-        .addInterceptor(HttpLoggingInterceptor().apply {
-            if (BuildConfig.DEBUG) {
-                level = HttpLoggingInterceptor.Level.BASIC
-            }
-        })
-        .build()
+            //Настраиваем таймауты для медленного интернета
+            .callTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            //Добавляем логгер
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                if (BuildConfig.DEBUG) {
+                    level = HttpLoggingInterceptor.Level.BASIC
+                }
+            })
+            .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        //Указываем базовый URL из констант
-        .baseUrl(ApiConstants.BASE_URL)
-        //Добавляем конвертер
-        .addConverterFactory(GsonConverterFactory.create())
-        //Добавляем кастомный клиент
-        .client(okHttpClient)
-        .build()
+            //Указываем базовый URL из констант
+            .baseUrl(ApiConstants.BASE_URL)
+            //Добавляем конвертер
+            .addConverterFactory(GsonConverterFactory.create())
+            //Добавляем кастомный клиент
+            .client(okHttpClient)
+            .build()
 
     @Provides
     @Singleton
-    fun provideHApi(retrofit: Retrofit): HApi = retrofit.create(HApi::class.java)
+    fun provideTmdbApi(retrofit: Retrofit): CApi = retrofit.create(CApi::class.java)
 }
