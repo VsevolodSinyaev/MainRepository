@@ -1,6 +1,6 @@
 package com.vss3003.wallpapersearcher.di.modules
 
-import com.vss3003.wallpapersearcher.data.CApi
+import com.vss3003.wallpapersearcher.data.HApi
 import com.vss3003.wallpapersearcher.domain.Interactor
 import dagger.Module
 import dagger.Provides
@@ -10,5 +10,5 @@ import javax.inject.Singleton
 class DomainModule {
     @Singleton
     @Provides
-    fun provideInteractor(cApi: CApi) = Interactor(retrofitService = cApi)
+    fun provideInteractor(hApi: HApi) = Interactor(retrofitService = hApi)
 }

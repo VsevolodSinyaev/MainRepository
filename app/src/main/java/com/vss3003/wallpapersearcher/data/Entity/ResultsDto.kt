@@ -1,6 +1,5 @@
 package com.vss3003.wallpapersearcher.data.Entity
 
-
 import com.google.gson.annotations.SerializedName
 
 data class ResultsDto(
@@ -13,5 +12,5 @@ data class ResultsDto(
         @SerializedName("count")
         val count: Int,
         @SerializedName("results")
-        val results: List<MarvelCharacter>
+        val results: List<ComicHero>
 )

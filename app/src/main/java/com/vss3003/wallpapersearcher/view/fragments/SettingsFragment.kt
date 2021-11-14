@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.vss3003.wallpapersearcher.R
+import com.vss3003.wallpapersearcher.utils.AnimationHelper
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment() {
 
@@ -15,7 +17,13 @@ class SettingsFragment : Fragment() {
     ): View? {
 
         return inflater.inflate(R.layout.fragment_settings, container, false)
-        //AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        AnimationHelper.performFragmentCircularRevealAnimation(settings_fragment_root, requireActivity(),2)
+
     }
 
 }

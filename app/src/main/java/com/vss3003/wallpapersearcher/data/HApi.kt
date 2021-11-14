@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface CApi {
+interface HApi {
     @GET("v1/public/characters")
     fun getCharacters(
             @Query("apikey") apiKey: String,

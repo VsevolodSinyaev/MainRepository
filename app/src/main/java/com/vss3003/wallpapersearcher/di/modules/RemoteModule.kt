@@ -2,7 +2,7 @@ package com.vss3003.wallpapersearcher.di.modules
 
 import com.vss3003.wallpapersearcher.BuildConfig
 import com.vss3003.wallpapersearcher.data.ApiConstants
-import com.vss3003.wallpapersearcher.data.CApi
+import com.vss3003.wallpapersearcher.data.HApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -41,5 +41,5 @@ class RemoteModule {
 
     @Provides
     @Singleton
-    fun provideTmdbApi(retrofit: Retrofit): CApi = retrofit.create(CApi::class.java)
+    fun provideHeroApi(retrofit: Retrofit): HApi = retrofit.create(HApi::class.java)
 }

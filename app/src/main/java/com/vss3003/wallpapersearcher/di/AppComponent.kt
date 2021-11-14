@@ -2,7 +2,7 @@ package com.vss3003.wallpapersearcher.di
 
 import com.vss3003.wallpapersearcher.di.modules.DomainModule
 import com.vss3003.wallpapersearcher.di.modules.RemoteModule
-import com.vss3003.wallpapersearcher.viewmodel.CharacterViewModel
+import com.vss3003.wallpapersearcher.viewmodel.HomeFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,5 +14,5 @@ import javax.inject.Singleton
         ]
 )
 interface AppComponent {
-    fun inject(characterViewModel: CharacterViewModel)
+    fun inject(homeFragmentViewModel: HomeFragmentViewModel)
 }

@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
                 .addToBackStack(null)
                 .commit()
 
-
     }
 
     private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
@@ -72,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         //Создаем "посылку"
         val bundle = Bundle()
         //Кладем наш фильм в "посылку"
-        bundle.putParcelable("character", heroes)
+        bundle.putParcelable("hero", heroes)
         //Кладем фрагмент с деталями в перменную
         val fragment = DetailsFragment()
         //Прикрепляем нашу "посылку" к фрагменту

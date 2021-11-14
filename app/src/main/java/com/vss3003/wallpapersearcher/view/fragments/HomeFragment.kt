@@ -12,17 +12,17 @@ import com.vss3003.wallpapersearcher.databinding.FragmentHomeBinding
 import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.utils.AnimationHelper
 import com.vss3003.wallpapersearcher.view.MainActivity
-import com.vss3003.wallpapersearcher.view.rv_adapter.CharacterListRecyclerAdapter
+import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.rv_adapter.TopSpacingItemDecoration
-import com.vss3003.wallpapersearcher.viewmodel.CharacterViewModel
+import com.vss3003.wallpapersearcher.viewmodel.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
 
 class HomeFragment : Fragment() {
     private val viewModel by lazy {
-        ViewModelProvider.NewInstanceFactory().create(CharacterViewModel::class.java)
+        ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
-    private lateinit var charactersAdapter: CharacterListRecyclerAdapter
+    private lateinit var charactersAdapter: HeroListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
 
     private var charactersDataBase = listOf<Heroes>()
@@ -51,10 +51,36 @@ class HomeFragment : Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
 
         initRecyckler()
+        initSearchView()
 
-        viewModel.charactersListLiveData.observe(viewLifecycleOwner, {
+        viewModel.heroesListLiveData.observe(viewLifecycleOwner, {
             charactersAdapter.addItems(it)
         })
+
+    }
+
+    private fun initRecyckler() {
+        main_recycler.apply {
+            charactersAdapter =
+                    HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
+                        override fun click(heroes: Heroes) {
+                            (requireActivity() as MainActivity).launchDetailsFragment(heroes)
+                        }
+                    })
+            adapter = charactersAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+
+    }
+
+    private fun initSearchView() {
+
+
+        search_view.setOnClickListener {
+            search_view.isIconified = false
+        }
 
         //Подключаем слушателя изменений введенного текста в поиска
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -62,6 +88,7 @@ class HomeFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
+
             //Этот метод отрабатывает на каждое изменения текста
             override fun onQueryTextChange(newText: String): Boolean {
                 //Если ввод пуст то вставляем в адаптер всю БД
@@ -72,7 +99,8 @@ class HomeFragment : Fragment() {
                 //Фильтруем список на поискк подходящих сочетаний
                 val result = charactersDataBase.filter {
                     //Чтобы все работало правильно, нужно и запроси и имя фильма приводить к нижнему регистру
-                    it.name.toLowerCase(Locale.getDefault()).contains(newText.toLowerCase(Locale.getDefault()))
+                    it.name.toLowerCase(Locale.getDefault())
+                            .contains(newText.toLowerCase(Locale.getDefault()))
                 }
                 //Добавляем в адаптер
                 charactersAdapter.addItems(result)
@@ -80,20 +108,4 @@ class HomeFragment : Fragment() {
             }
         })
     }
-
-    private fun initRecyckler() {
-        main_recycler.apply {
-            charactersAdapter =
-                    CharacterListRecyclerAdapter(object : CharacterListRecyclerAdapter.OnItemClickListener {
-                        override fun click(heroes: Heroes) {
-                            (requireActivity() as MainActivity).launchDetailsFragment(heroes)
-                        }
-                    })
-            adapter = charactersAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-    }
-
 }

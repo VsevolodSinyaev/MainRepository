@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.vss3003.wallpapersearcher.R
-import com.vss3003.wallpapersearcher.data.ApiConstants
 import com.vss3003.wallpapersearcher.databinding.FragmentDetailsBinding
 import com.vss3003.wallpapersearcher.domain.Heroes
+import com.vss3003.wallpapersearcher.dto.Thumbnail
 
 class DetailsFragment : Fragment() {
     private lateinit var heroes: Heroes
+    private lateinit var thumbnail: Thumbnail
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -27,7 +28,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFilmsDetails()
+        setHeroesDetails()
 
         binding.detailsFabFavorites.setOnClickListener {
             if (!heroes.isInFavorites) {
@@ -44,19 +45,20 @@ class DetailsFragment : Fragment() {
             intent.action = Intent.ACTION_SEND
             intent.putExtra(
                     Intent.EXTRA_TEXT,
-                    "Check out this film: ${heroes.name} \n\n ${heroes.description}"
+                    "Check out this hero: ${heroes.name} \n\n ${heroes.description}"
             )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share To:"))
         }
     }
 
-    private fun setFilmsDetails() {
-        heroes = arguments?.get("film") as Heroes
+    private fun setHeroesDetails() {
+        heroes = arguments?.get("hero") as Heroes
+        thumbnail = arguments?.get("thumbnail") as Thumbnail
 
         binding.detailsToolbar.title = heroes.name
         Glide.with(this)
-                .load(ApiConstants.IMAGE_URL + heroes.id + "standard_medium")
+                .load(thumbnail.path + "standard_small." + thumbnail.extension)
                 .centerCrop()
                 .into(binding.detailsPoster)
         binding.detailsDescription.text = heroes.description

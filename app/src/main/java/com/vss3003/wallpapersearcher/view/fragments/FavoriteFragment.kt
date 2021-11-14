@@ -10,12 +10,12 @@ import com.vss3003.wallpapersearcher.databinding.FragmentFavoriteBinding
 import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.utils.AnimationHelper
 import com.vss3003.wallpapersearcher.view.MainActivity
-import com.vss3003.wallpapersearcher.view.rv_adapter.CharacterListRecyclerAdapter
+import com.vss3003.wallpapersearcher.view.rv_adapter.HeroListRecyclerAdapter
 import com.vss3003.wallpapersearcher.view.rv_adapter.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {
-    private lateinit var charactersAdapter: CharacterListRecyclerAdapter
+    private lateinit var heroesAdapter: HeroListRecyclerAdapter
     private lateinit var binding: FragmentFavoriteBinding
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +33,13 @@ class FavoriteFragment : Fragment() {
         AnimationHelper.performFragmentCircularRevealAnimation(favorite_fragment_root, requireActivity(),2)
 
         binding.favoriteRecycler.apply {
-            charactersAdapter = CharacterListRecyclerAdapter(object : CharacterListRecyclerAdapter.OnItemClickListener {
+            heroesAdapter = HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
                 override fun click(heroes: Heroes) {
                     (requireActivity() as MainActivity).launchDetailsFragment(heroes)
                 }
             })
             //Присваиваем адаптер
-            adapter = charactersAdapter
+            adapter = heroesAdapter
             //Присвои layoutmanager
             layoutManager = LinearLayoutManager(requireContext())
             //Применяем декоратор для отступов
@@ -47,6 +47,6 @@ class FavoriteFragment : Fragment() {
             addItemDecoration(decorator)
         }
         //Кладем нашу БД в RV
-        charactersAdapter.addItems(favoriteList)
+        heroesAdapter.addItems(favoriteList)
     }
 }
