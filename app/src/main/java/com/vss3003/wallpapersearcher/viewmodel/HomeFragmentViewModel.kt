@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.vss3003.wallpapersearcher.App
 import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.domain.Interactor
-import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
@@ -18,7 +17,7 @@ class HomeFragmentViewModel : ViewModel() {
     init {
         App.instance.dagger.inject(this)
         interactor.getHeroesFromApi(1, object : ApiCallback {
-            override fun onSuccess(heroes: MutableList<Heroes>) {
+            override fun onSuccess(heroes: List<Heroes>) {
                 Log.d("TAG", "onSuccess: $heroes")
                 heroesListLiveData.postValue(heroes)
             }
@@ -28,23 +27,8 @@ class HomeFragmentViewModel : ViewModel() {
         })
     }
 
-    fun getHeroes() {
-        interactor.getHeroesFromApi(1, object : ApiCallback {
-            override fun onSuccess(heroes: MutableList<Heroes>) {
-                heroesListLiveData.postValue(heroes)
-            }
-
-            override fun onFailure() {
-                Executors.newSingleThreadExecutor().execute {
-                    heroesListLiveData.postValue(interactor.getHeroesFromApi(1, object : ApiCallback))
-                }
-            }
-        })
-    }
-
     interface ApiCallback {
-        fun onSuccess(heroes: MutableList<Heroes>)
+        fun onSuccess(heroes: List<Heroes>)
         fun onFailure()
     }
 }
-

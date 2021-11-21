@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface HApi {
     @GET("v1/public/characters")
-    fun getCharacters(
+    fun getHeroes(
             @Query("apikey") apiKey: String,
             @Query("ts") timeStamp: String,
             @Query("hash") hash: String,

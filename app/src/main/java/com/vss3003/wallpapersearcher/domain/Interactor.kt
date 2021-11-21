@@ -19,17 +19,17 @@ import java.util.*
 
 class Interactor(private val retrofitService: HApi) {
 
-    fun getHeroesFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback): MutableList<Heroes> {
-        retrofitService.getCharacters(
-                API_KEY_PUBLIC,
-                getTimeStump(),
-                getHashMd5(API_KEY_PUBLIC, ApiConstants.API_KEY_PRIVATE)
+    fun getHeroesFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
+        retrofitService.getHeroes(
+            API_KEY_PUBLIC,
+            getTimeStump(),
+            getHashMd5(API_KEY_PUBLIC, ApiConstants.API_KEY_PRIVATE)
         ).enqueue(object : Callback<Marvel> {
             override fun onResponse(call: Call<Marvel>, response: Response<Marvel>) {
                 callback.onSuccess(
-                        Converter.convertApiListToDTOList(
-                                response.body()?.data?.results as MutableList<Result>?
-                        )
+                    Converter.convertApiListToDTOList(
+                            response.body()?.data?.results as MutableList<Result>?
+                    )
                 )
                 Log.d("TAG", "response: ${response.body()?.data?.results}")
             }
@@ -38,7 +38,6 @@ class Interactor(private val retrofitService: HApi) {
                 callback.onFailure()
             }
         })
-    return mutableListOf()
     }
 
     private fun getTimeStump(): String {
