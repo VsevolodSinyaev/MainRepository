@@ -7,7 +7,6 @@ object Converter {
     fun convertApiListToDTOList(mutableList: MutableList<Result>?): MutableList<Heroes> {
         val result = mutableListOf<Heroes>()
         mutableList?.forEach {
-            // TODO: 03.11.2021 модель Heroes ваще не совпадает, поэтому только имя, описание и ID
             result.add(
                     Heroes(
                             name = it.name,

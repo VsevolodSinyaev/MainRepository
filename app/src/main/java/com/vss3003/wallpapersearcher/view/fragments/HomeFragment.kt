@@ -38,8 +38,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
 
         AnimationHelper.performFragmentCircularRevealAnimation(home_fragment_root, requireActivity(), 1)
 
-        initRecyckler()
+        initRecycler()
         initSearchView()
 
         viewModel.heroesListLiveData.observe(viewLifecycleOwner, {
@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun initRecyckler() {
+    private fun initRecycler() {
         main_recycler.apply {
             charactersAdapter =
                     HeroListRecyclerAdapter(object : HeroListRecyclerAdapter.OnItemClickListener {
