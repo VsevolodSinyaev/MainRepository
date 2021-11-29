@@ -1,9 +1,9 @@
 package com.vss3003.wallpapersearcher.dto
 
-data class Data(
+data class HeroDataContainerDto(
         val count: Int,
         val limit: Int,
         val offset: Int,
-        val results: List<Result>,
-        val total: Int
+        val total: Int,
+        val results: List<HeroDto>
 )

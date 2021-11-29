@@ -1,6 +1,6 @@
 package com.vss3003.wallpapersearcher.dto
 
-data class ItemXX(
+data class ComicSummaryDto(
         val name: String,
-        val resourceURI: String
+        val resourceURl: String
 )

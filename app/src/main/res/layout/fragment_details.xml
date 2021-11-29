@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:borderWidth="0dp"
-        android:backgroundTint="/@drawable/background_button"
+        android:backgroundTint="@drawable/background_button"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="left|bottom"
         app:srcCompat="@drawable/ic_round_favorite"

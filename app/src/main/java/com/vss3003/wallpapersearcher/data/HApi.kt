@@ -1,6 +1,6 @@
 package com.vss3003.wallpapersearcher.data
 
-import com.vss3003.wallpapersearcher.dto.Marvel
+import com.vss3003.wallpapersearcher.dto.HeroDataWrapperDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface HApi {
             @Query("apikey") apiKey: String,
             @Query("ts") timeStamp: String,
             @Query("hash") hash: String,
-    ): Call<Marvel>
+    ): Call<HeroDataWrapperDto>
 }

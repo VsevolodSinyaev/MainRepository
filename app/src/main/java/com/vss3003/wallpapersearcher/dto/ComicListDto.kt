@@ -1,8 +1,8 @@
 package com.vss3003.wallpapersearcher.dto
 
-data class Series(
+data class ComicListDto(
         val available: Int,
+        val returned: Int,
         val collectionURI: String,
-        val items: List<ItemXX>,
-        val returned: Int
+        val comicSummaryDtos: List<ComicSummaryDto>
 )

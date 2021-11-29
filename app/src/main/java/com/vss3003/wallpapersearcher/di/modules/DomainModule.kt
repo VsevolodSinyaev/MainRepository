@@ -5,7 +5,6 @@ import com.vss3003.wallpapersearcher.domain.Interactor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-
 @Module
 class DomainModule {
     @Singleton
