@@ -44,18 +44,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/details_fab_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:borderWidth="0dp"
-        android:backgroundTint="@drawable/background_button"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|right"
-        app:srcCompat="@drawable/ic_baseline_share"
-        app:tint="@android:color/white"
-        android:contentDescription="@string/share" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/details_fab_favorites"
@@ -69,6 +58,19 @@
         app:srcCompat="@drawable/ic_round_favorite"
         app:tint="@android:color/white"
         android:contentDescription="@string/favorite" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:borderWidth="0dp"
+        android:backgroundTint="@drawable/background_button"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="right|bottom"
+        app:srcCompat="@drawable/ic_baseline_share"
+        app:tint="@android:color/white"
+        android:contentDescription="@string/share" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/details_fab_download_picture"

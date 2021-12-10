@@ -4,7 +4,7 @@ import android.util.Log
 import com.vss3003.wallpapersearcher.data.ApiConstants
 import com.vss3003.wallpapersearcher.data.ApiConstants.API_KEY_PUBLIC
 import com.vss3003.wallpapersearcher.data.HApi
-import com.vss3003.wallpapersearcher.dto.HeroDataWrapperDto
+import com.vss3003.wallpapersearcher.data.HeroDataWrapper
 import com.vss3003.wallpapersearcher.utils.Converter
 import com.vss3003.wallpapersearcher.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
@@ -23,8 +23,8 @@ class Interactor(private val retrofitService: HApi) {
             API_KEY_PUBLIC,
             getTimeStump(),
             getHashMd5(API_KEY_PUBLIC, ApiConstants.API_KEY_PRIVATE)
-        ).enqueue(object : Callback<HeroDataWrapperDto> {
-            override fun onResponse(call: Call<HeroDataWrapperDto>, response: Response<HeroDataWrapperDto>) {
+        ).enqueue(object : Callback<HeroDataWrapper> {
+            override fun onResponse(call: Call<HeroDataWrapper>, response: Response<HeroDataWrapper>) {
                 callback.onSuccess(
                     Converter.convertApiListToDTOList(
                         response.body()?.data?.results
@@ -33,7 +33,7 @@ class Interactor(private val retrofitService: HApi) {
                 Log.d("TAG", "response: ${response.body()?.data?.results}")
             }
 
-            override fun onFailure(call: Call<HeroDataWrapperDto>, t: Throwable) {
+            override fun onFailure(call: Call<HeroDataWrapper>, t: Throwable) {
                 callback.onFailure()
             }
         })

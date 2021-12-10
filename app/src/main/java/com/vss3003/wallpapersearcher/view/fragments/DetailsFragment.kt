@@ -10,11 +10,11 @@ import com.bumptech.glide.Glide
 import com.vss3003.wallpapersearcher.R
 import com.vss3003.wallpapersearcher.databinding.FragmentDetailsBinding
 import com.vss3003.wallpapersearcher.domain.Heroes
-import com.vss3003.wallpapersearcher.dto.ThumbnailDto
+import com.vss3003.wallpapersearcher.dto.Thumbnail
 
 class DetailsFragment : Fragment() {
     private lateinit var heroes: Heroes
-    private lateinit var thumbnailDto: ThumbnailDto
+    private lateinit var thumbnail: Thumbnail
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -53,11 +53,11 @@ class DetailsFragment : Fragment() {
 
     private fun setHeroesDetails() {
         heroes = arguments?.get("hero") as Heroes
-        thumbnailDto = arguments?.get("thumbnail") as ThumbnailDto
+        thumbnail = arguments?.get("thumbnail") as Thumbnail
 
         binding.detailsToolbar.title = heroes.name
         Glide.with(this)
-                .load(thumbnailDto.path + "standard_small." + thumbnailDto.extension)
+                .load(thumbnail.path + "standard_small." + thumbnail.extension)
                 .centerCrop()
                 .into(binding.detailsPoster)
         binding.detailsDescription.text = heroes.description

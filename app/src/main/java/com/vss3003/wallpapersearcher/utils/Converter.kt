@@ -1,10 +1,10 @@
 package com.vss3003.wallpapersearcher.utils
 
+import com.vss3003.wallpapersearcher.data.Hero
 import com.vss3003.wallpapersearcher.domain.Heroes
-import com.vss3003.wallpapersearcher.dto.HeroDto
 
 object Converter {
-    fun convertApiListToDTOList(list: List<HeroDto>?): List<Heroes> {
+    fun convertApiListToDTOList(list: List<Hero>?): List<Heroes> {
         val result = mutableListOf<Heroes>()
         list?.forEach {
             result.add(
