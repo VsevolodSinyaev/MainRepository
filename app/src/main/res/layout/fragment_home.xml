@@ -12,11 +12,14 @@
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
-        android:background="@drawable/search_view_shape"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@color/dark_red"
+        android:foregroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:searchIcon="@drawable/ic_round_search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler"

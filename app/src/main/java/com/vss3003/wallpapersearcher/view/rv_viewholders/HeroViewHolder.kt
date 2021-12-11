@@ -1,8 +1,6 @@
 package com.vss3003.wallpapersearcher.view.rv_viewholders
 
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.vss3003.wallpapersearcher.domain.Heroes
@@ -15,7 +13,6 @@ class HeroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val description = itemView.description
     private lateinit var binding: Thumbnail
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun bind(heroes: Heroes) {
         name.text = heroes.name
         Glide.with(thumbnail.context)
