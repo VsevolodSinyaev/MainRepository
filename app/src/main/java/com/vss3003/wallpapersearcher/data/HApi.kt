@@ -9,6 +9,6 @@ interface HApi {
     fun getHeroes(
             @Query("apikey") apiKey: String,
             @Query("ts") timeStamp: String,
-            @Query("hash") hash: String,
+            @Query("hash") hash: String
     ): Call<HeroDataWrapper>
 }

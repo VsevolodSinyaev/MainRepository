@@ -8,4 +8,6 @@
     <string name="thumbnail">Thumbnail</string>
     <string name="share">Share</string>
     <string name="download">Download picture</string>
+    <string name="change_theme">Change Theme</string>
+    <string name="theme">Theme</string>
 </resources>

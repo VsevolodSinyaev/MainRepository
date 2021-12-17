@@ -43,9 +43,6 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/details_fab_favorites"
         android:layout_width="wrap_content"
@@ -86,9 +83,11 @@
         app:tint="@android:color/white" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_details"
+        app:layout_anchorGravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView

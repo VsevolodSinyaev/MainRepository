@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.vss3003.wallpapersearcher.databinding.FragmentHomeBinding
 import com.vss3003.wallpapersearcher.domain.Heroes
 import com.vss3003.wallpapersearcher.domain.Interactor
@@ -39,6 +37,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
     override fun onCreateView(
@@ -75,6 +74,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
+
         }
 
     }
@@ -112,7 +112,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    fun doSearchPagination(
+    /*fun doSearchPagination(
         visibleItemCount: Int,
         totalItemCount: Int,
         pastVisibleItemCount: Int,
@@ -133,9 +133,9 @@ class HomeFragment : Fragment() {
                 getDataFromSearch(query, page)
             }
         }
-    }
+    }*/
 
-    private fun RecyclerView.initSearchPagination() {
+    /*private fun RecyclerView.initSearchPagination() {
         //Добавляем слушатель для скролла нашего RV
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -158,5 +158,5 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-    }
+    }*/
 }
